@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head></head>
+<body>
+    <h1>
+        Hello World !
+    </h1>
+    <h1>welcome {{ .username }}</h1>
+    <form method="POST" action="/">
+        <input type="text" name="username">
+        <input type="submit" value="submit">
+    </form>
+    <form method="POST" action="/test">
+        <input type="text" name="text">
+        <input type="submit" value="submit">
+    </form>
+    <a href="/db">sqlite查詢</a>
+    <hr>
+
+    <hr>
+    <form method="POST" action="/new">
+        <input type="text" name="text">
+        <input type="text" name="status">
+        <input type="submit" value="新增">
+    </form>
+    <ul>
+        {{ range .todos }}
+            <li>内容：{{ .Text }}、状態：{{ .Status }}
+                <form method="POST" action="updata/{{ .ID }}">
+                    <input type="text" name="text">
+                    <input type="text" name="status">
+                    <hr>
+                    <input type="submit" value="更新">
+                </form>
+                <form method="POST" action="delete/{{ .ID }}">
+                    <input type="submit" value="刪除">
+                </form>
+            </li>
+        {{end}}
+    </ul>
+</body>
+<footer></footer>
